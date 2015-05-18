@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "邮箱验证";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div>
+    <div class="panel panel-default RegPanel center-block">
+        <div class="panel-body">
+            <div data-id='reg'>
+                <h1>
+                    邮箱验证
+                </h1>
+                <span class="small">为了保护你的账号安全，请再次输入你的邮箱。你需要在下一步输入我们发送给你的验证码。</span>
+                <div class="RegDiv">
+                    <form id="regForm">
+                        <input name="address" data-validate='true' type="email" class="form-control input-bottom input-block" data-bsvalidate="[{'name':'isNotNull'},{'name':'email'},{'name':'equals','eq':'emailHidden','message':'你输入的邮件地址与注册的不相符'}]" id="email" placeholder="邮箱"><span></span>
+                        <input type="hidden" id="emailHidden" value=""/>
+                        <button type="button" class="btn  btn-primary btn-block" onclick="Submit()">下一步</button>
+                    </form>
+                </div>
+                <span class="remarks">注: 你的电子邮件默认不会公开显示。其他用户可以通过你的编号找到你，而你可以随时更改你的隐私设置，使其他用户可以通过你的邮箱找到你。</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#emailHidden').val($.cookie('email'));
+        $.Validate();
+    });
+    function Submit() {
+        if ($.SubmitValidate()) {
+            $.Submit("/Base/SendEmail", "regForm", "", "", "/Reg/RegEmailCode","");
+        }
+    }
+</script>

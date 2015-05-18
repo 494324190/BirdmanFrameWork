@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "基本信息注册";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div>
+    <div class="panel panel-default RegPanel center-block">
+        <div class="panel-body">
+            <div data-id='reg'>
+                <h1>
+                    现在就加入 Bird Man Blog。
+                </h1>
+                <span class="small">获取即时新闻和基于你兴趣的最新报道，第一时间让你获得你所想了解的内容，并且关注事态发展。</span>
+                <div class="RegDiv">
+                    <form id="regForm">
+                        <input data-validate="true" type="text" class="form-control input-bottom input-block" name="UserName" id="name" placeholder="用户名" data-bsvalidate="[{'name':'isNotNull'},{'name':'length','Length':{'minLength':'3','maxLength':'12'}},{'name':'duplicate'}]"><span></span>
+                        <input data-validate="true" type="email" class="form-control input-bottom input-block" name="Email" id="email" placeholder="邮箱" data-bsvalidate="[{'name':'email'}]"><span></span>
+                        <input data-validate="true" type="password" class="form-control input-bottom input-block" id="password" placeholder="密码" data-bsvalidate="[{'name':'isNotNull'},{'name':'length','Length':{'minLength':'6','maxLength':'18'}}]"><span></span>
+                        <input type="hidden" value="" name="Password" id="passwordHidden" />
+                        <button type="button" class="btn  btn-primary btn-block" onclick="Submit()">下一步</button>
+                    </form>
+                </div>
+                <span class="remarks">注册即表示， 你同意 服务条款 以及 隐私条款，包括 Cookie 使用隐私条款. 其他人则可以通过你提供的邮箱地址或者电话号码找到你。</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $.Validate();
+        $('#password').keypress(function () {
+            $('#passwordHidden').val($.md5($('#password').val()));
+        });
+        var userName = new Array();
+        if ($.cookie('userBase') != null) {
+            userName = $.cookie('userBase').split(',');
+            $('#name').val(userName[0]);
+            $('#email').val(userName[1]);
+            $('#password').val(userName[2]);
+            $("#passwordHidden").val(userName[3]);
+            $.cookie('userBase', null);
+        }
+    });
+    function Submit() {
+        if ($.SubmitValidate()) {
+            $.cookie('email', $('#email').val());
+            $.Submit("/Base/RegisterCommon", "regForm", "", "","/Reg/RegEmail");
+        }
+    }
+</script>

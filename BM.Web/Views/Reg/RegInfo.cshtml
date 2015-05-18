@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "完善个人信息";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+@Styles.Render("~/Content/Date")
+@Scripts.Render("~/bundles/Date")
+<style>
+    button {
+        margin-top: 10px;
+    }
+
+    ul {
+        padding-left: 0px;
+        overflow: hidden;
+    }
+
+    label {
+        margin-bottom: 0px;
+        margin-top: 7px;
+    }
+
+    li {
+        margin-top: 12px;
+        overflow: auto;
+    }
+
+    .breakSpan {
+        color: #929090;
+        cursor: pointer;
+    }
+</style>
+<div>
+    <div class="panel panel-default RegPanel center-block">
+        <div class="panel-body">
+            <div data-id='reg'>
+                <h1>
+                    完善你的基本信息
+                </h1>
+                <span class="small">完善你的基本信息，好友将更了解你。</span>
+                <div style="margin-bottom:20px;width:100%;">
+                    <form id="regForm" class="pull-left" style="width:50%">
+                        <ul>
+                            <li>
+                                <label class="pull-left">姓名</label>
+                                <input type="text" style="width:85%" name="Name" class="form-control pull-right" placeholder="姓名" />
+                            </li>
+                            <li>
+                                <label class="pull-left" style=" margin-top:2px;">生日</label>
+                                <input name="Birthday" type="text" style="width:85%;cursor:pointer;" placeholder="选择生日" value="" id="datetimepicker" readonly="" class="form_datetime pull-right form-control">
+                            </li>
+                            <li>
+                                <label class="pull-left" style=" margin-top:2px;">性别</label>
+                                <div class="pull-left" style="padding-left:6%;width:85%">
+                                    <input type="radio" name="Sex" value="0"/>男&nbsp;&nbsp;
+                                    <input type="radio" name="Sex" value="1"/>女
+                                </div>
+                            </li>
+                            <li>
+                                <label class="pull-left">手机</label>
+                                <input type="text" style="width:85%" name="MPhone" class="form-control pull-right" placeholder="手机" /><span></span>
+                            </li>
+                        </ul>
+                        <button class="btn  btn-primary btn-block" style="width: 331px;" onclick="Submit()">下一步</button>
+                    </form>
+                </div>
+                <div style="clear:both"></div>
+                <span class="remarks">注：您的信息默认将不会被公开，如需公开请登录后在个人中心的安全设置中开启。</span>
+            </div>
+        </div>
+    </div>
+    <div class="RegPanel center-block ">
+        <span class="breakSpan pull-right" onclick="window.location = '/Blog/Main'">不想填写，跳过>></span>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#datetimepicker').datetimepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            startView: 4,
+            minView: 2,
+            language: 'zh-CN'
+        });
+    })
+    function Submit() {
+        $.Submit("/Reg/RegInfo", "regForm", "", "/Blog/Main", "");
+    }
+</script>

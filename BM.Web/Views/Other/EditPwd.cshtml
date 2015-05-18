@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "修改密码";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}<div>
+    <div class="panel panel-default RegPanel center-block">
+        <div class="panel-body">
+            <div data-id='reg'>
+                <h1>
+                    修改密码
+                </h1>
+                <span class="small">请输入新密码，请不要与旧密码相同。</span>
+                <div class="RegDiv">
+                    <form id="regForm">
+                        <input  data-validate='true' type="password" class="form-control input-bottom input-block" data-bsvalidate="[{'name':'isNotNull'}]" id="pwd" placeholder="新密码"><span></span>
+                        <input  data-validate='true' type="password" class="form-control input-bottom input-block" data-bsvalidate="[{'name':'isNotNull'},{'name':'equals','eq':'pwd','message':'两次输入不一致'}]" id="dPWD" placeholder="再次输入新密码"><span></span>
+                        <input name="newPwd" id="newPwd_hidden" type="hidden" value="" />
+                        <button type="button" class="btn  btn-primary btn-block" onclick="Submit()">完成</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $.Validate();
+        $('#dPWD').keypress(function () {
+            $('#newPwd_hidden').val($.md5($('#dPWD').val()));
+        });
+    });
+    function Submit() {
+        if ($.SubmitValidate()) {
+            $.Submit("/Other/EditPwd", "regForm", "", "", "/Login/Index", "/Other/Error");
+        }
+    };
+</script>
+
+

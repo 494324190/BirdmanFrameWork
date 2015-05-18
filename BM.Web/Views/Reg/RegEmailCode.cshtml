@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "验证码";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div>
+    <div class="panel panel-default RegPanel center-block">
+        <div class="panel-body">
+            <div data-id='reg'>
+                <h1>
+                    邮箱验证码
+                </h1>
+                <span class="small">请输入你收到的验证码，输入完成后你将注册完成，并且进入推荐关注页面。</span>
+                <div class="RegDiv">
+                    <input data-validate='true' type="text" class="form-control input-bottom input-block" data-str="" data-uStr="" data-bsvalidate="[{'name':'isNotNull'},{'name':'equalsStr','message':'验证码错误'}]" id="key" placeholder="验证码"><span></span>
+                    <button type="button" class="btn  btn-primary btn-block" onclick="Submit()">完成</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+
+        $('#key').keypress(function () {
+            $('#key').attr('data-uStr', $.md5($('#key').val()));
+        });
+        $('#key').keyup(function (e) {
+            keyBlur(e);
+        });
+        $('#key').blur(function (e) {
+            keyBlur(e);
+        });
+        $.Validate();
+    });
+    function keyBlur(e) {
+        if (e.ctrlKey && e.keyCode == 86) {
+            $('#key').attr('data-uStr', $.md5($('#key').val()));
+        }
+    }
+    function Submit() {
+        var emailKey = $.cookie('emailKey');
+        var uKey = $.md5($('#key').val());
+        $('#key').attr('data-str', emailKey);
+        $('#key').attr('data-uStr', uKey);
+        if ($.SubmitValidate()) {
+            if (uKey == emailKey) {
+                window.location = "/Reg/RegInfo";
+            }
+        }
+    };
+</script>
