@@ -1,20 +1,15 @@
 ﻿using BM.Common.FileOperate;
-using BM.IBLL;
-using BM.Models;
-using Microsoft.Practices.Unity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
+using BM.BLL;
+using BM.Common.Web;
+using BM.Models;
 
 namespace BM.Common.Log
 {
     public class OperateLog
     {
-        [Dependency]
-        public ICommonBLL<tb_OperateLog> cbo { get; set; }
+        private OperateLogBLL cbo = new OperateLogBLL();
         /// <summary>
         /// 操作日志
         /// </summary>
@@ -55,19 +50,46 @@ namespace BM.Common.Log
                 case 2:
                     ot = OperateType.增加.ToString();
                     break;
+                case 3:
+                    ot = OperateType.创建数据库.ToString();
+                    break;
+                case 4:
+                    ot = OperateType.登录.ToString();
+                    break;
             }
-            string content = "OperateType：" + ot + "     IP：" + ol.IP;
+            string content = "OperateType：" + ot + "     IP：" + ol.Ip;
             Txt.Write(path, content, ol.DateTime.ToString("yyyyMMdd") + "------" + Guid.NewGuid());
         }
         private void saveOperateLogDB(tb_OperateLog ol)
         {
-            cbo.Save(ol);
+            try
+            {
+                cbo.Save(ol);
+            }
+            catch (Exception e)
+            {
+
+                ErrorLog errorLog = new ErrorLog();
+                tb_ErrorLog error = new tb_ErrorLog();
+                error.DateTime = DateTime.Now;
+                error.ErrorName = e.Message;
+                error.Ip = Ip.getIp();
+                error.OperateTyep = 0;
+                error.ErrorContent = e.Message;
+
+                errorLog.SaveError(error, 3);
+            }
         }
-        private enum OperateType
+        public enum OperateType
         {
             增加 = 0,
             删除 = 1,
             修改 = 2,
+            创建数据库 = 3,
+            登录 = 4,
+            获取列表 = 5,
+            获取一个实体 = 6
         }
+
     }
 }

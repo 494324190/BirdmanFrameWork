@@ -20,21 +20,21 @@ namespace BM.Common.StringOperate
     public class SensitiveWord
     {
         [Dependency]
-        public  ICommonBLL<tb_SensitiveWord> cb { get; set; }
-        
+        public ICommonBLL<tb_SensitiveWord> cb { get; set; }
+
         /// <summary>
         /// 将字符串里的敏感词汇替换成**
         /// </summary>
         /// <param name="wordStr">原始字符串</param>
         /// <returns></returns>
-        public  string Replace(string wordStr)
+        public string Replace(string wordStr)
         {
-            List<tb_SensitiveWord> list = cb.getList(null); 
+            List<tb_SensitiveWord> list = cb.getList(null);
             for (int i = 0; i < list.Count; i++)
             {
-                if (wordStr.Contains(list[i].sensitive))
+                if (wordStr.Contains(list[i].SensitiveWord))
                 {
-                    wordStr.Replace(list[i].sensitive, "**");
+                    wordStr.Replace(list[i].SensitiveWord, "**");
                 }
             }
             return wordStr;
@@ -44,12 +44,12 @@ namespace BM.Common.StringOperate
         /// </summary>
         /// <param name="wordStr"></param>
         /// <returns></returns>
-        public  bool Sensitive(string wordStr)
+        public bool Sensitive(string wordStr)
         {
             List<tb_SensitiveWord> list = cb.getList(null);
             for (int i = 0; i < list.Count; i++)
             {
-                if (wordStr.Contains(list[i].sensitive))
+                if (wordStr.Contains(list[i].SensitiveWord))
                 {
                     i = list.Count;
                     return true;

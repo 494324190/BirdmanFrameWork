@@ -14,7 +14,7 @@ namespace BM.Models
     
     public partial class tb_SensitiveWord
     {
-        public int Id { get; set; }
-        public string sensitive { get; set; }
+        public string Id { get; set; }
+        public string SensitiveWord { get; set; }
     }
 }

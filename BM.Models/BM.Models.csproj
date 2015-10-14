@@ -30,11 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -48,61 +50,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="birdmanBlog.Context.cs">
+    <Compile Include="Blog.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>birdmanBlog.Context.tt</DependentUpon>
+      <DependentUpon>Blog.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="birdmanBlog.cs">
+    <Compile Include="Blog.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>birdmanBlog.tt</DependentUpon>
+      <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
-    <Compile Include="birdmanBlog.Designer.cs">
+    <Compile Include="Blog.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>birdmanBlog.edmx</DependentUpon>
+      <DependentUpon>Blog.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tb_Email.cs">
-      <DependentUpon>birdmanBlog.tt</DependentUpon>
+    <Compile Include="tb_Article.cs">
+      <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_error.cs">
-      <DependentUpon>birdmanBlog.tt</DependentUpon>
+    <Compile Include="tb_ArticleClassification.cs">
+      <DependentUpon>Blog.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_ErrorLog.cs">
+      <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
     <Compile Include="tb_OperateLog.cs">
-      <DependentUpon>birdmanBlog.tt</DependentUpon>
+      <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
     <Compile Include="tb_SensitiveWord.cs">
-      <DependentUpon>birdmanBlog.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tb_Users.cs">
-      <DependentUpon>birdmanBlog.tt</DependentUpon>
+      <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="birdmanBlog.edmx">
+    <EntityDeploy Include="Blog.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>birdmanBlog.Designer.cs</LastGenOutput>
+      <LastGenOutput>Blog.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="birdmanBlog.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>birdmanBlog.edmx</DependentUpon>
-      <LastGenOutput>birdmanBlog.Context.cs</LastGenOutput>
-    </None>
-    <None Include="birdmanBlog.edmx.diagram">
-      <DependentUpon>birdmanBlog.edmx</DependentUpon>
-    </None>
-    <None Include="birdmanBlog.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>birdmanBlog.edmx</DependentUpon>
-      <LastGenOutput>birdmanBlog.cs</LastGenOutput>
+    <None Include="Blog.edmx.diagram">
+      <DependentUpon>Blog.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Blog.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Blog.edmx</DependentUpon>
+      <LastGenOutput>Blog.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Blog.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Blog.edmx</DependentUpon>
+      <LastGenOutput>Blog.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

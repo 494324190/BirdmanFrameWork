@@ -11,7 +11,12 @@ namespace BM.Common.StringOperate
     /// </summary>
     public  static class IsNull
     {
-        //判断是否为空
+        /// <summary>
+        /// 判断是否为空
+        /// </summary>
+        /// <param name="Str"></param>
+        /// <returns></returns>
+
         public static bool Null(string Str)
         {
             if (!String.IsNullOrEmpty(Str))

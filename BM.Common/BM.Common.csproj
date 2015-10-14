@@ -34,7 +34,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libry\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -53,6 +53,9 @@
     <Compile Include="FileOperate\Xml.cs" />
     <Compile Include="Log\ErrorLog.cs" />
     <Compile Include="Log\OperateLog.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringOperate\Encryption.cs" />
     <Compile Include="StringOperate\IsNull.cs" />
@@ -62,11 +65,34 @@
     <Compile Include="Type\Type.cs" />
     <Compile Include="Web\Cookie.cs" />
     <Compile Include="Web\Email.cs" />
+    <Compile Include="Web\Ip.cs" />
+    <Compile Include="Web\Leave.cs" />
+    <Compile Include="Web\ParameterRebinder.cs" />
+    <Compile Include="Web\PredicateBuilder.cs" />
+    <Compile Include="Web\Session.cs" />
+    <Compile Include="Web\Step.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libry\Microsoft.Practices.Unity.dll" />
+    <Content Include="obj\Debug\BM.Common.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\BM.Common.dll" />
+    <Content Include="obj\Debug\BM.Common.pdb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="obj\Debug\BM.Common.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Debug\build.force" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BM.BLL\BM.BLL.csproj">
+      <Project>{54ab27a1-434a-4ac5-9470-b25f6eeba659}</Project>
+      <Name>BM.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BM.IBLL\BM.IBLL.csproj">
       <Project>{6d09ef91-e477-4adc-99e9-75716f4e5b62}</Project>
       <Name>BM.IBLL</Name>

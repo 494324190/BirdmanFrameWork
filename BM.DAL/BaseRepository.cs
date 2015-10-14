@@ -14,11 +14,11 @@ namespace BM.DAL
         /// <summary>
         /// 实例化数据库实例
         /// </summary>
-        public birdmanBlogEntities ce;
+        public BlogEntities ce;
 
         public BaseRepository()
         {
-            ce = new birdmanBlogEntities();
+            ce = new BlogEntities();
         }
         /// <summary>
         /// 保存
