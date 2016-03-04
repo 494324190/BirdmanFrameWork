@@ -23,26 +23,27 @@ namespace BM.BLL
         /// 根据条件分页
         /// </summary>
         /// <param name="where">查询条件</param>
+        /// <param name="order">排序条件</param>
+        /// <param name="pageTatol">总页数</param>
         /// <param name="nextPage">下一页（默认值1）</param>
         /// <param name="pageRowCount">每页行数（默认值10）</param>
-        /// <param name="order">排序条件</param>
         /// <returns>list</returns>
-        public List<K> pageByWhere(Func<K, bool> where,Func<K,object> order, int nextPage = 1, int pageRowCount = 10)
+        public List<K> pageByWhere(Func<K, bool> where, Func<K, object> order, out int pageTatol, int nextPage = 1, int pageRowCount = 10)
         {
             try
             {
                 if (where != null)
                 {
-                    return cdal.pageByWhere(where, nextPage, pageRowCount,order);
+                    return cdal.pageByWhere(where, nextPage, pageRowCount, order, out pageTatol);
                 }
                 else
                 {
+                    pageTatol = 0;
                     return null;
                 }
             }
             catch (Exception e)
             {
-                return null;
                 throw e;
             }
         }
@@ -55,7 +56,7 @@ namespace BM.BLL
         {
             try
             {
-                if(where !=null)
+                if (where != null)
                 {
                     return cdal.getPageCount(where);
                 }
@@ -64,7 +65,7 @@ namespace BM.BLL
                     return -1;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return -1;
                 throw e;
@@ -79,7 +80,7 @@ namespace BM.BLL
         {
             try
             {
-                if(model !=null)
+                if (model != null)
                 {
                     if (cdal.Save(model) > 0)
                     {
@@ -88,9 +89,8 @@ namespace BM.BLL
                 }
                 return false;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return false;
                 throw e;
             }
         }
@@ -103,7 +103,7 @@ namespace BM.BLL
         {
             try
             {
-                if(model !=null)
+                if (model != null)
                 {
                     if (cdal.Edit(model) > 0)
                     {
@@ -112,7 +112,7 @@ namespace BM.BLL
                 }
                 return false;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return false;
                 throw e;
@@ -127,13 +127,13 @@ namespace BM.BLL
         {
             try
             {
-                if(func !=null)
+                if (func != null)
                 {
                     return cdal.getModel(func);
                 }
                 return null;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return null;
                 throw e;

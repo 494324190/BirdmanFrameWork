@@ -22,13 +22,13 @@ namespace BM.IDAL
         /// <param name="pageRowCount">每页行数</param>
         /// <param name="order">排序条件</param>
         /// <returns>list</returns>
-        List<K> pageByWhere(Func<K, bool> where, int nextPage, int pageRowCount, Func<K,object> order);
+        List<K> pageByWhere(Func<K, bool> where, int nextPage, int pageRowCount, Func<K, object> order, out int pageTatol);
         /// <summary>
         /// 获取总页数
         /// </summary>
         /// <param name="where">查询条件</param>
         /// <returns></returns>
-        int getPageCount(Func<K,bool> where);
+        int getPageCount(Func<K, bool> where);
         /// <summary>
         /// 单表保存
         /// </summary>
@@ -46,7 +46,7 @@ namespace BM.IDAL
         /// </summary>
         /// <param name="func">查询条件</param>
         /// <returns>K</returns>
-        K getModel(Func<K,bool> func);
+        K getModel(Func<K, bool> func);
         /// <summary>
         /// 获取数据列表
         /// </summary>

@@ -18,10 +18,12 @@ namespace BM.IBLL
         /// 根据条件分页
         /// </summary>
         /// <param name="where">查询条件</param>
+        /// <param name="order">排序条件</param>
+        /// <param name="pageTatol">总页数</param>
         /// <param name="nextPage">下一页（默认值1）</param>
         /// <param name="pageRowCount">每页行数（默认值10）</param>
         /// <returns>list</returns>
-        List<K> pageByWhere(Func<K, bool> where, Func<K,object> order, int nextPage = 1, int pageRowCount = 10);
+        List<K> pageByWhere(Func<K, bool> where, Func<K, object> order, out int pageTatol, int nextPage = 1, int pageRowCount = 10);
         /// <summary>
         /// 获取总页数
         /// </summary>
