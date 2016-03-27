@@ -1,4 +1,6 @@
-﻿using BM.BLL;
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+using BM.BLL;
 using BM.DAL;
 using BM.IBLL;
 using BM.IDAL;
@@ -23,16 +25,17 @@ namespace BM.Core
         //    container.RegisterType<ICommonBLL<调用处返回值的实体类型>, CommonBLL<调用处返回值的实体类型>>();
         public static void Container_Sys(ref UnityContainer container)
         {
-							container.RegisterType<ICommonDAL<tb_Article>, CommonDAL<tb_Article>>();
-				container.RegisterType<ICommonBLL<tb_Article>, CommonBLL<tb_Article>>();
-									container.RegisterType<ICommonDAL<tb_ArticleClassification>, CommonDAL<tb_ArticleClassification>>();
-				container.RegisterType<ICommonBLL<tb_ArticleClassification>, CommonBLL<tb_ArticleClassification>>();
-									container.RegisterType<ICommonDAL<tb_ErrorLog>, CommonDAL<tb_ErrorLog>>();
-				container.RegisterType<ICommonBLL<tb_ErrorLog>, CommonBLL<tb_ErrorLog>>();
-									container.RegisterType<ICommonDAL<tb_OperateLog>, CommonDAL<tb_OperateLog>>();
-				container.RegisterType<ICommonBLL<tb_OperateLog>, CommonBLL<tb_OperateLog>>();
-									container.RegisterType<ICommonDAL<tb_SensitiveWord>, CommonDAL<tb_SensitiveWord>>();
-				container.RegisterType<ICommonBLL<tb_SensitiveWord>, CommonBLL<tb_SensitiveWord>>();
-					        }
+			<# System.Reflection.Assembly assembly = System.Reflection.Assembly.LoadFrom(Host.ResolveAssemblyReference("$(TargetDir)")+"/BM.Models.dll");
+            Type[] ts = assembly.GetTypes();
+            foreach (Type t in ts)
+            {
+				if(t.Name!="BlogEntities"){
+					#>
+				container.RegisterType<ICommonDAL<<#=t.Name#>>, CommonDAL<<#=t.Name#>>>();
+				container.RegisterType<ICommonBLL<<#=t.Name#>>, CommonBLL<<#=t.Name#>>>();
+					<#
+				};
+            }#>
+        }
     }
 }
