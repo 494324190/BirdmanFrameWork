@@ -23,7 +23,7 @@ namespace BM.Core
         //    container.RegisterType<ICommonBLL<调用处返回值的实体类型>, CommonBLL<调用处返回值的实体类型>>();
         public static void Container_Sys(ref UnityContainer container)
         {
-							container.RegisterType<ICommonDAL<tb_Article>, CommonDAL<tb_Article>>();
+									container.RegisterType<ICommonDAL<tb_Article>, CommonDAL<tb_Article>>();
 				container.RegisterType<ICommonBLL<tb_Article>, CommonBLL<tb_Article>>();
 									container.RegisterType<ICommonDAL<tb_ArticleClassification>, CommonDAL<tb_ArticleClassification>>();
 				container.RegisterType<ICommonBLL<tb_ArticleClassification>, CommonBLL<tb_ArticleClassification>>();
